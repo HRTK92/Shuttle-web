@@ -79,22 +79,22 @@
     <div class="score-box">
         <span class="scoreA">0</span>
         <div class="control">
-            <a class="btn minusA" onclick="score(minusA)">&minus;</a>
-            <a class="btn plusA" onclick="score(plusA)">&plus;</a>
+            <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
+            <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
         </div>
     </div>
     <div class="score-box">
         <span class="scoreB">0</span>
         <div class="control">
-            <a class="btn minusB" onclick="score(minusB)">&minus;</a>
-            <a class="btn plusB" onclick="score(plusB)">&plus;</a>
+            <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
+            <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
     </div>
     <a class="reset" href="">リセット</a>
     <a class="switch">スイッチ</a>
     <script>
-        function score() {
-            console.log();
+        function score(e) {
+            console.log(e);
         }
     </script>
 </body>
