@@ -90,7 +90,7 @@
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
     </div>
-    <a class="reset" href="">リセット</a>
+    <a class="reset" onclick="score('reset')">リセット</a>
     <a class="switch" onclick="score('switch')">入れ替え</a>
     <script>
         function score(e) {
@@ -98,7 +98,12 @@
             var scoreB = Number(document.getElementById('scoreB').textContent);
             console.log(scoreA, scoreB)
             if (e == "switch"){
-                
+                document.getElementById('scoreA').innerText = scoreB;
+                document.getElementById('scoreB').innerText = scoreA;
+            }
+            else if (e == "switch"){
+                document.getElementById('scoreA').innerText = 0;
+                document.getElementById('scoreB').innerText = 0;
             }
             console.log(e);
         }
