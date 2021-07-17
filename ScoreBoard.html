@@ -59,7 +59,6 @@
             color: #fff;
             display: block;
             font-weight: 100
-
             width: 40px;
             height: 40px;
             line-height: 2.5;
@@ -73,6 +72,20 @@
         }
         .switch {
             right: 15px;
+        }
+        .difference {
+            background: #004400;
+            border-radius: 4px;
+            color: #fff;
+            display: block;
+            font-weight: 100
+            width: 40px;
+            height: 40px;
+            line-height: 2.5;
+            text-align: center;
+            position: absolute;
+            top: 15px;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -91,15 +104,14 @@
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
     </div>
+    <span class="difference" id="difference">0</span>
     <a class="reset" onclick="score('reset')">reset</a>
     <a class="switch" onclick="score('switch')">change</a>
     <script>
         function score(e) {
-
-            console.log(scoreA, scoreB)
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
             if (e == "switch") {
-                var scoreA = Number(document.getElementById('scoreA').textContent);
-                var scoreB = Number(document.getElementById('scoreB').textContent);
                 document.getElementById('scoreA').innerText = scoreB;
                 document.getElementById('scoreB').innerText = scoreA;
             } else if (e == "reset") {
@@ -114,7 +126,14 @@
                     document.getElementById(`score${result[0]}`).innerText = score-1;
                 }
             }
-            console.log(e);
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
+            if (scoreA > scoreB) {
+                document.getElementById('difference').innerText = scoreA-scoreB
+            } else {
+                document.getElementById('difference').innerText = scoreB-scoreA
+            }
+            console.log(e,);
         }
     </script>
 </body>
