@@ -90,8 +90,8 @@
 			<a class="btn plusB" href="">&plus;</a>
 		</div>
 	</div>
-	<a class="reset" href="">重來</a>
-	<a class="switch" href="">換邊</a>
+	<a class="reset" href="">リセット</a>
+	<a class="switch" href="">スイッチ</a>
 
 	<script src="jquery-3.4.1.slim.min.js"></script>
 	<script>
@@ -141,7 +141,7 @@
 					scoreB.html(counterB);
 				}
 			})
-			// 重設分數
+			// リセット
 			$('.reset').click(function(e) {
 				e.preventDefault();
 				scoreA.html(0).removeClass('active');
@@ -149,7 +149,7 @@
 				counterA = 0;
 				counterB = 0;
 			})
-			// 半場交換
+			// スコア交換
 			$('.switch').click(function(e) {
 				e.preventDefault();
 				var a = counterA;
