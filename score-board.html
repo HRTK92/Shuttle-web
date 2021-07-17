@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<title>PSC Badminton Scoreboard</title>
+	<title>Badminton Scoreboard</title>
 	<style>
 		* {
 			box-sizing: border-box;
@@ -79,88 +79,18 @@
 	<div class="score-box">
 		<span class="scoreA">0</span>
 		<div class="control">
-			<a class="btn minusA" href="">&minus;</a>
-			<a class="btn plusA" href="">&plus;</a>
+			<a class="btn minusA">&minus;</a>
+			<a class="btn plusA">&plus;</a>
 		</div>
 	</div>
 	<div class="score-box">
 		<span class="scoreB">0</span>
 		<div class="control">
-			<a class="btn minusB" href="">&minus;</a>
-			<a class="btn plusB" href="">&plus;</a>
+			<a class="btn minusB">&minus;</a>
+			<a class="btn plusB">&plus;</a>
 		</div>
 	</div>
-	<a class="reset" href="">重來</a>
-	<a class="switch" href="">換邊</a>
-
-	<script src="jquery-3.4.1.slim.min.js"></script>
-	<script>
-		$(function(){
-			// DOM
-			var scoreA = $('.scoreA');
-			var scoreB = $('.scoreB');
-
-			var plusA = $('.plusA');
-			var plusB = $('.plusB');
-
-			var minusA = $('.minusA');
-			var minusB = $('.minusB');
-
-			var counterA = 0;
-			var counterB = 0;
-
-			// 左半場
-			plusA.click(function(e) {
-				e.preventDefault();
-				if ( counterA < 21 ) {
-					counterA ++;
-					scoreA.html(counterA).addClass('active');
-					scoreB.removeClass('active');
-				}
-			})
-			minusA.click(function(e) {
-				e.preventDefault();
-				if ( counterA > 0) {
-					counterA --;
-					scoreA.html(counterA);
-				}
-			})
-			// 右半場
-			plusB.click(function(e) {
-				e.preventDefault();
-				if ( counterB < 21 ) {
-					counterB ++;
-					scoreB.html(counterB).addClass('active');
-					scoreA.removeClass('active');
-				}
-			})
-			minusB.click(function(e) {
-				e.preventDefault();
-				if ( counterB > 0) {
-					counterB --;
-					scoreB.html(counterB);
-				}
-			})
-			// 重設分數
-			$('.reset').click(function(e) {
-				e.preventDefault();
-				scoreA.html(0).removeClass('active');
-				scoreB.html(0).removeClass('active');
-				counterA = 0;
-				counterB = 0;
-			})
-			// 半場交換
-			$('.switch').click(function(e) {
-				e.preventDefault();
-				var a = counterA;
-				var b = counterB;
-				scoreA.html(b).toggleClass('active');
-				scoreB.html(a).toggleClass('active');
-				counterA = b;
-				counterB = a;
-			})
-		});
-
-	</script>
+	<a class="reset" href="">リセット</a>
+	<a class="switch">スイッチ</a>
 </body>
 </html>
