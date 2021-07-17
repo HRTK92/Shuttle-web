@@ -94,8 +94,8 @@
     <a class="switch" onclick="score('switch')">入れ替え</a>
     <script>
         function score(e) {
-            var scoreA = document.getElementById('scoreA').textContent;
-            var scoreB = document.getElementById('scoreB').textContent;
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
             console.log(scoreA, scoreB)
             if (e == "switch"){
                 
