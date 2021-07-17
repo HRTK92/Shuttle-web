@@ -77,23 +77,29 @@
 </head>
 <body>
     <div class="score-box">
-        <span class="scoreA">0</span>
+        <span class="scoreA" id="scoreA">0</span>
         <div class="control">
             <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
             <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
         </div>
     </div>
     <div class="score-box">
-        <span class="scoreB">0</span>
+        <span class="scoreB" id="scoreB">0</span>
         <div class="control">
             <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
     </div>
     <a class="reset" href="">リセット</a>
-    <a class="switch">スイッチ</a>
+    <a class="switch" onclick="score('switch')">入れ替え</a>
     <script>
         function score(e) {
+            var scoreA = document.getElementById('scoreA').textContent;
+            var scoreB = document.getElementById('scoreB').textContent;
+            console.log(scoreA, scoreB)
+            if (e == "switch"){
+                
+            }
             console.log(e);
         }
     </script>
