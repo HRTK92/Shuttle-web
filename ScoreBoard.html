@@ -38,7 +38,7 @@
         }
         .control {
             position: absolute;
-            bottom: 60px;
+            bottom: 60%;
             width: 100%;
         }
         .btn {
@@ -88,20 +88,32 @@
             text-decoration: none;
             left: 40%;
         }
-        }
+
     </style>
+    <script>
+        var orientation = window.orientation;
+        if (orientation === 0) {
+            console.log("縦")
+        } else {
+            console.log("横")
+            console = document.getElementsByClassName('console');
+            for (var i = 0; i < console.length; i++) {
+                console[i].style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="score-box">
         <span class="scoreA" id="scoreA" onclick="score('A_plus')">0</span>
-        <div class="control">
+        <div class="control" id="control">
             <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
             <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
         </div>
     </div>
     <div class="score-box">
         <span class="scoreB" id="scoreB" onclick="score('B_plus')">0</span>
-        <div class="control">
+        <div class="control" id="control">
             <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
@@ -109,7 +121,7 @@
     <span class="difference" id="difference">点差:0</span>
     <a class="reset" onclick="score('reset')">reset</a>
     <a class="switch" onclick="score('switch')">change</a>
-    
+
     <script>
         function score(e) {
             var scoreA = Number(document.getElementById('scoreA').textContent);
