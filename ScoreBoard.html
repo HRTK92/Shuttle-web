@@ -87,7 +87,7 @@
             position: absolute;
             top: 15px;
             text-decoration: none;
-            left: 40px;
+            left: 40%;
         }
         }
     </style>
@@ -107,7 +107,7 @@
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
         </div>
     </div>
-    <span class="difference" id="difference">0</span>
+    <span class="difference" id="difference">点差:0</span>
     <a class="reset" onclick="score('reset')">reset</a>
     <a class="switch" onclick="score('switch')">change</a>
     
@@ -143,6 +143,7 @@
             } else {
                 document.getElementById('difference').innerText = scoreB-scoreA
             }
+            document.getElementById('difference').innerText = "点差:"+document.getElementById('difference').textContent
             console.log(e);
         }
     </script>
