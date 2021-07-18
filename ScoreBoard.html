@@ -75,17 +75,10 @@
         }
         .difference {
             background: #004400;
-            border-radius: 4px;
-            color: #fff;
-            display: block;
-            font-weight: 100
-            width: 50%;
-            height: 50%;
-            line-height: 2.5;
-            text-align: center;
-            position: absolute;
-            top: 15px;
-            text-decoration: none;
+            color: #FFDAE4;
+            top: 50%;
+            left: 50%;
+            font-size: 50;
         }
     </style>
 </head>
@@ -105,6 +98,8 @@
         </div>
     </div>
     <span class="difference" id="difference">0</span>
+    <!--<span class="difference" id="A_difference">点差:0</span>
+        <span class="difference" id="B_difference">点差:0</span>-->
     <a class="reset" onclick="score('reset')">reset</a>
     <a class="switch" onclick="score('switch')">change</a>
     <script>
@@ -135,11 +130,11 @@
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
-                document.getElementById('difference').innerText = scoreA-scoreB
+                document.getElementById('difference').innerText = "点差:"+scoreA-scoreB
             } else {
-                document.getElementById('difference').innerText = scoreB-scoreA
+                document.getElementById('difference').innerText = "点差:"+scoreB-scoreA
             }
-            console.log(e,);
+            console.log(e);
         }
     </script>
 </body>
