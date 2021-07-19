@@ -25,7 +25,7 @@
             text-align: center;
             width: 50%;
             height: 100vh;
-            line-height: 1.2;
+            line-height: 2;
             position: relative;
             letter-spacing: -20px;
         }
@@ -53,7 +53,7 @@
             line-height: 2.5;
             opacity: .7;
         }
-        .reset, .switch, .setting {
+        .reset, .switch, .setting, .difference {
             background: #004400;
             border-radius: 4px;
             color: #fff;
@@ -74,19 +74,7 @@
             left: 70px;
         }
         .difference {
-            background: #004400;
-            border-radius: 4px;
-            color: #fff;
-            display: block;
-            font-weight: 100
-            width: 40px;
-            height: 40px;
-            line-height: 2.5;
-            text-align: center;
-            position: absolute;
-            top: 15px;
-            text-decoration: none;
-            left: 40%;
+            left: 45%;
         }
         .setting {
             right: 15px;
@@ -101,21 +89,21 @@
             console.log("横")
             console = document.getElementsByClassName('console');
             for (var i = 0; i < console.length; i++) {
-                console[i].style.display = "none";
+                //console[i].style.display = "none";
             }
         }
     </script>
 </head>
 <body>
     <div class="score-box">
-        <span class="scoreA" id="scoreA" onclick="score('A_plus')" style="top:100px;">0</span>
+        <span class="scoreA" id="scoreA" onclick="score('A_plus')">0</span>
         <div class="control" id="control">
             <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
             <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
         </div>
     </div>
     <div class="score-box">
-        <span class="scoreB" id="scoreB" onclick="score('B_plus')" style="top:100px;">0</span>
+        <span class="scoreB" id="scoreB" onclick="score('B_plus')">0</span>
         <div class="control" id="control">
             <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
             <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
