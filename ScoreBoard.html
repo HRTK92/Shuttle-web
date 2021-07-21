@@ -89,7 +89,7 @@
             console.log("横")
             console = document.getElementsByClassName('console');
             for (var i = 0; i < console.length; i++) {
-                //console[i].style.display = "none";
+                console[i].style.display = "none";
             }
         }
     </script>
@@ -127,7 +127,7 @@
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
                 if (result[1] == "plus") {
-                    if (score == 30) {
+                    if (score == 50) {
                         return
                     }
                     document.getElementById(`score${result[0]}`).innerText = score+1;
@@ -149,6 +149,7 @@
             console.log(e);
         }
         function setting() {
+
             console.log("設定")
         }
     </script>
