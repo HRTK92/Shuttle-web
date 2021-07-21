@@ -84,12 +84,15 @@
     <script>
         var orientation = window.orientation;
         if (orientation === 0) {
-            console.log("縦")
+            console.log("縦");
         } else {
-            console.log("横")
-            console = document.getElementsByClassName('console');
-            for (var i = 0; i < console.length; i++) {
-                console[i].style.display = "none";
+            console.log("横");
+            control = document.getElementsByClassName('control');
+            console.log(control);
+            for (var i = 0; i < control.length; i++) {
+                console.log(i)
+                control[i].style.display = "none";
+                console.log(control[i])
             }
         }
     </script>
