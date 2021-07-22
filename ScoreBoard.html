@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -8,6 +9,7 @@
         * {
             box-sizing: border-box;
         }
+
         body {
             background: #005500;
             font-family: arial, sans-serif;
@@ -18,9 +20,10 @@
             height: 100vh;
             overflow: hidden;
         }
+
         .score-box {
             color: #fff;
-            font-size: 40vw;
+            font-size: 2000%;
             float: left;
             text-align: center;
             width: 50%;
@@ -29,18 +32,22 @@
             position: relative;
             letter-spacing: -20px;
         }
+
         .score-box:first-child {
             border-right: 2px solid yellow;
             background: #006600;
         }
+
         .active {
             color: yellow;
         }
+
         .control {
             position: absolute;
-            bottom: 60px;
+            bottom: 10%;
             width: 100%;
         }
+
         .btn {
             color: #ccc;
             font-size: 40px;
@@ -53,7 +60,11 @@
             line-height: 2.5;
             opacity: .7;
         }
-        .reset, .switch, .setting, .difference {
+
+        .reset,
+        .switch,
+        .setting,
+        .difference {
             background: #004400;
             border-radius: 4px;
             color: #fff;
@@ -67,19 +78,22 @@
             top: 15px;
             text-decoration: none;
         }
+
         .reset {
             left: 10px;
         }
+
         .switch {
             left: 80px;
         }
+
         .difference {
             left: 45%;
         }
+
         .setting {
             right: 15px;
         }
-
     </style>
     <script>
         var orientation = window.orientation;
@@ -97,6 +111,7 @@
         }
     </script>
 </head>
+
 <body>
     <div class="score-box">
         <span class="scoreA" id="scoreA" onclick="score('A_plus')">0</span>
@@ -133,22 +148,22 @@
                     if (score == 50) {
                         return
                     }
-                    document.getElementById(`score${result[0]}`).innerText = score+1;
+                    document.getElementById(`score${result[0]}`).innerText = score + 1;
                 } else if (result[1] == "minus") {
                     if (score == 0) {
                         return
                     }
-                    document.getElementById(`score${result[0]}`).innerText = score-1;
+                    document.getElementById(`score${result[0]}`).innerText = score - 1;
                 }
             }
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
-                document.getElementById('difference').innerText = scoreA-scoreB
+                document.getElementById('difference').innerText = scoreA - scoreB
             } else {
-                document.getElementById('difference').innerText = scoreB-scoreA
+                document.getElementById('difference').innerText = scoreB - scoreA
             }
-            document.getElementById('difference').innerText = "点差:"+document.getElementById('difference').textContent
+            document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
             console.log(e);
         }
         function setting() {
@@ -157,4 +172,5 @@
         }
     </script>
 </body>
+
 </html>
