@@ -112,25 +112,27 @@
     </script>
 </head>
 
-<body>
-    <div class="score-box">
-        <span class="scoreA" id="scoreA" onclick="score('A_plus')">0</span>
-        <div class="control" id="control">
-            <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
-            <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
+<body id="body">
+    <div class="scoreBoard">
+        <div class="score-box">
+            <span class="scoreA" id="scoreA" onclick="score('A_plus')">0</span>
+            <div class="control" id="control">
+                <a class="btn minusA" onclick="score('A_minus')">&minus;</a>
+                <a class="btn plusA" onclick="score('A_plus')">&plus;</a>
+            </div>
         </div>
-    </div>
-    <div class="score-box">
-        <span class="scoreB" id="scoreB" onclick="score('B_plus')">0</span>
-        <div class="control" id="control">
-            <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
-            <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
+        <div class="score-box">
+            <span class="scoreB" id="scoreB" onclick="score('B_plus')">0</span>
+            <div class="control" id="control">
+                <a class="btn minusB" onclick="score('B_minus')">&minus;</a>
+                <a class="btn plusB" onclick="score('B_plus')">&plus;</a>
+            </div>
         </div>
+        <span class="difference" id="difference">点差:0</span>
+        <a class="reset" onclick="score('reset')">reset</a>
+        <a class="switch" onclick="score('switch')">change</a>
+        <a class="setting" onclick="setting()" id="setting">⚙設定</a>
     </div>
-    <span class="difference" id="difference">点差:0</span>
-    <a class="reset" onclick="score('reset')">reset</a>
-    <a class="switch" onclick="score('switch')">change</a>
-    <a class="setting" onclick="setting()" id="js-show-popup">⚙設定</a>
     <script>
         function score(e) {
             var scoreA = Number(document.getElementById('scoreA').textContent);
@@ -167,8 +169,7 @@
             console.log(e);
         }
         function setting() {
-
-            console.log("設定")
+            document.getElementById("body").innerHTML = "設定";
         }
     </script>
 </body>
