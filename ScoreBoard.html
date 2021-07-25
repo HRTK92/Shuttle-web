@@ -169,7 +169,19 @@
             console.log(e);
         }
         function setting() {
-            document.getElementById("body").innerHTML = "設定";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        document.getElementById("body").innerHTML = xmlhttp.responseText;
+                    } else {
+                        alert("status = " + xmlhttp.status);
+                    }
+                }
+            }
+            xmlhttp.open("GET", "https://raw.githubusercontent.com/HRTK92/badminton-tool/main/setting.html");
+            xmlhttp.send();
+            
         }
     </script>
 </body>
