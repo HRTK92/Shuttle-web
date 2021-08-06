@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Badminton Scoreboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -95,20 +96,14 @@
             right: 15px;
         }
     </style>
-    
+
     <script>
         var orientation = window.orientation;
         if (orientation === 0) {
             console.log("縦");
         } else {
             console.log("横");
-            control = document.getElementsByClassName('control');
-            console.log(control);
-            for (var i = 0; i < control.length; i++) {
-                console.log(i)
-                control[i].style.display = "none";
-                console.log(control[i])
-            }
+            $("control").hide();
         }
     </script>
 </head>
@@ -171,7 +166,7 @@
         }
         function setting() {
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
+            xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4) {
                     if (xmlhttp.status == 200) {
                         document.getElementById("body").innerHTML = xmlhttp.responseText;
@@ -182,7 +177,7 @@
             }
             xmlhttp.open("GET", "https://raw.githubusercontent.com/HRTK92/badminton-tool/main/setting.html");
             xmlhttp.send();
-            
+
         }
     </script>
 </body>
