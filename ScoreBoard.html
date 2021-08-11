@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Badminton Scoreboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
         * {
             box-sizing: border-box;
@@ -97,12 +97,6 @@
             right: 15px;
         }
     </style>
-    <script>
-        $("input[type=range]").on("input", function() {
-            console.log("!");
-            $('#max_score_display').text($("#max_score_display").val());
-        });
-    </script>
 </head>
 
 <body id="body">
@@ -125,7 +119,8 @@
         <a class="reset" onclick="score('reset')">reset</a>
         <a class="switch" onclick="score('switch')">change</a>
         <a class="setting" id="setting" data-bs-toggle="modal" data-bs-target="#staticBackdrop">⚙設定</a>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -134,12 +129,11 @@
                     </div>
                     <div class="modal-body">
                         <label for="max_score" class="form-label">最高得点</label>
-                        <p id="max_score_display">！</p>
-                        <input type="range" class="form-range" min="10" max="30" id="max_score">
+                        <p id="max_score_display">21</p>
+                        <input type="range" class="form-range" min="10" max="30" id="max_score" value="21">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Understood</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
                     </div>
                 </div>
             </div>
@@ -159,7 +153,7 @@
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
                 if (result[1] == "plus") {
-                    if (score == 50) {
+                    if (score >= $("#max_score").val()) {
                         return
                     }
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
@@ -196,9 +190,15 @@
 
         }
     </script>
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script>
+        $("input[type=range]").on("input", function () {
+            $('#max_score_display').text($("#max_score").val());
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
