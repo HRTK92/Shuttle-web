@@ -179,18 +179,22 @@
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
                 document.getElementById('difference').innerText = scoreA - scoreB
-                if ($("#color").val()) {
+                if ($("#color").prop('checked')) {
                     $("#scoreA").css("color", "red");
                     $("#scoreB").css("color", "blue");
                 }
             } else if (scoreA < scoreB) {
                 document.getElementById('difference').innerText = scoreB - scoreA
-                $("#scoreB").css("color", "red");
-                $("#scoreA").css("color", "blue");
+                if ($("#color").prop('checked')) {
+                    $("#scoreB").css("color", "red");
+                    $("#scoreA").css("color", "blue");
+                }
             } else if (scoreA === scoreB) {
                 document.getElementById('difference').innerText = scoreA - scoreB
-                $("#scoreA").css("color", "blue");
-                $("#scoreB").css("color", "blue");
+                if ($("#color").prop('checked')) {
+                    $("#scoreA").css("color", "blue");
+                    $("#scoreB").css("color", "blue");
+                }
 
             }
             document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
@@ -216,6 +220,11 @@
         $("input[type=range]").on("input", function () {
             $('#max_score_display').text($("#max_score").val());
         });
+        $("#color").on("change", function () {
+            $("#scoreA").css("color", "reset");
+            $("#scoreB").css("color", "reset");
+
+        })
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
