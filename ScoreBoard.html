@@ -192,6 +192,10 @@
                 document.getElementById('scoreA').innerText = scoreB;
                 document.getElementById('scoreB').innerText = scoreA;
             } else if (e == "reset") {
+                var score_sheet = [{
+                    "scoreA": false,
+                    "scoreB": false
+                }];
                 document.getElementById('scoreA').innerText = 0;
                 document.getElementById('scoreB').innerText = 0;
             } else if (e.indexOf('_') !== -1) {
@@ -214,13 +218,13 @@
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
                     if (score_n >= $("#max_score").val()) {
-                        $('#control, #control').hide('slow');
+                        $('#control, #control, .score, .score').hide('slow');
                         setTimeout(function () {
                             document.getElementById('scoreA').innerText = 0;
                             document.getElementById('scoreB').innerText = 0;
                             document.getElementById('difference').innerText = "点差:0";
                         }, 1000);
-                        $('#control, #control').show('slow');
+                        $('#control, #control, .score, .score').show('slow');
                     }
                 } else if (result[1] == "minus") {
                     if (score == 0) {
@@ -264,7 +268,7 @@
             }
         })
         $("#score_sheet_btn").on("click", function () {
-            
+
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
