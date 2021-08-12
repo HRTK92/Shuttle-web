@@ -200,21 +200,6 @@
             document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
             console.log(e);
         }
-        function setting() {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4) {
-                    if (xmlhttp.status == 200) {
-                        document.getElementById("body").innerHTML = xmlhttp.responseText;
-                    } else {
-                        alert("status = " + xmlhttp.status);
-                    }
-                }
-            }
-            xmlhttp.open("GET", "https://raw.githubusercontent.com/HRTK92/badminton-tool/main/setting.html");
-            xmlhttp.send();
-
-        }
     </script>
     <script>
         $("input[type=range]").on("input", function () {
