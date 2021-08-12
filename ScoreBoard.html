@@ -151,6 +151,7 @@
         </div>
     </div>
     <script>
+        var score_sheet = {}
         function score(e) {
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
@@ -163,6 +164,12 @@
             } else if (e.indexOf('_') !== -1) {
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
+                var total_score = scoreA + scoreB
+                if (result[0] === "A") {
+                    var addData = { total_score: { "scoreA": true, "scoreB": false } }
+                } else if (result[0] ==="B"){
+                    var addData = { total_score: { "scoreA": true, "scoreB": false } }
+                }
                 if (result[1] == "plus") {
                     if (score >= $("#max_score").val()) {
                         return
@@ -198,7 +205,7 @@
 
             }
             document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
-            console.log(e);
+            console.log(score_sheet);
         }
     </script>
     <script>
