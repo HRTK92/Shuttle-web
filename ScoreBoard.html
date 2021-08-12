@@ -220,9 +220,12 @@
         $("input[type=range]").on("input", function () {
             $('#max_score_display').text($("#max_score").val());
         });
-        $("#color").on("change", function () {
-            $("#scoreA").css("color", "reset");
-            $("#scoreB").css("color", "reset");
+        $("#color").change(function () {
+            if (this.checked) {
+            } else {
+                $("#scoreA").css("color", "#FFF");
+                $("#scoreB").css("color", "#FFF");
+            }
 
         })
     </script>
