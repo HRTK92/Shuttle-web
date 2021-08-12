@@ -214,7 +214,7 @@
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
-                    if (score_n == $("#max_score").val()) {
+                    if (score_n >= $("#max_score").val()) {
                         $('#control, #control').hide('slow');
                         setTimeout(function() {
                             document.getElementById('scoreA').innerText = 0;
@@ -222,7 +222,7 @@
                             document.getElementById('difference').innerText = "点差:0";
                         }, 1000);
                         $('#control, #control').show('slow');
-                        
+
                     }
                 } else if (result[1] == "minus") {
                     if (score == 0) {
