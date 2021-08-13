@@ -1,5 +1,7 @@
-# TODO:ゲームセット数を表示
-
+<!-- 
+TODO:ゲームセット数を表示
+TODO:スコアシートを追加
+-->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -117,6 +119,7 @@
             <p class="score" id="scoreA" onclick="score('A_plus')">
                 0
             </p>
+            <p id="Game_set_A">0</p>
             <div class="control" id="control">
                 <a class="btn_ minusA" onclick="score('A_minus')">&minus;</a>
                 <a class="btn_ plusA" onclick="score('A_plus')">&plus;</a>
@@ -126,6 +129,7 @@
             <p class="score" id="scoreB" onclick="score('B_plus')">
                 0
             </p>
+            <p id="Game_set_B">0</p>
             <div class="control" id="control">
                 <a class="btn_ minusB" onclick="score('B_minus')">&minus;</a>
                 <a class="btn_ plusB" onclick="score('B_plus')">&plus;</a>
@@ -219,12 +223,14 @@
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
+                    var set = Number(document.getElementById(`game_set_${result[0]}`).textContent);
                     if (score_n >= $("#max_score").val()) {
-                        $('#control, #control, .score, .score').hide('slow');
+                        $('#control, #control, .score, .score, #game_set_A, #game_set_B').hide('slow');
                         setTimeout(function () {
                             document.getElementById('scoreA').innerText = 0;
                             document.getElementById('scoreB').innerText = 0;
                             document.getElementById('difference').innerText = "点差:0";
+                            $("#game_set_" + result[0]).text(set+1)
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
