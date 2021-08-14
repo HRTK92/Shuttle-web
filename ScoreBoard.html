@@ -209,15 +209,10 @@ TODO:スコアシートを追加
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (e == "switch") {
-                document.getElementById('scoreA').innerText = scoreB;
-                document.getElementById('scoreB').innerText = scoreA;
+                $("#scoreA").text(scoreB)
+                $("#scoreB").text(scoreA);
             } else if (e == "reset") {
-                //var score_sheet = [{
-                //    "scoreA": false,
-                //    "scoreB": false
-                //}];
-                document.getElementById('scoreA').innerText = 0;
-                document.getElementById('scoreB').innerText = 0;
+                $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
             } else if (e.indexOf('_') !== -1) {
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
@@ -283,7 +278,9 @@ TODO:スコアシートを追加
             $('#max_score_display').text($("#max_score").val());
         });
         $("#color").change(function () {
-            if (this.checked) { } else {
+            if (this.checked) {
+                score("color")
+            } else {
                 $("#scoreA").css("color", "#FFF");
                 $("#scoreB").css("color", "#FFF");
             }
