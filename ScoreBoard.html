@@ -54,6 +54,11 @@ TODO:スコアシートを追加
             text-align: center;
         }
 
+        .saab {
+            height: 75%;
+            text-align: center;
+        }
+
         .score-box:first-child {
             border-right: 2px solid yellow;
             background: #006600;
@@ -125,7 +130,7 @@ TODO:スコアシートを追加
 
 <body>
     <div class="ScoreBoard">
-        <div class="score-box">
+        <div class="score-box" id="score-box_A">
             <p class="score" id="scoreA" onclick="score('A_plus')">
                 0
             </p>
@@ -135,7 +140,7 @@ TODO:スコアシートを追加
                 <a class="btn_ plusA" onclick="score('A_plus')">&plus;</a>
             </div>
         </div>
-        <div class="score-box">
+        <div class="score-box" id="score-box_B">
             <p class="score" id="scoreB" onclick="score('B_plus')">
                 0
             </p>
@@ -167,6 +172,10 @@ TODO:スコアシートを追加
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="game_set" checked>
                             <label class="form-check-label" for="game_set">ゲームセット数を表示するか</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="saab">
+                            <label class="form-check-label" for="saab">サーブを表示🏸</label>
                         </div>
                         <hr>
                         <label for="max_score" class="form-label">最高得点</label>
@@ -236,7 +245,7 @@ TODO:スコアシートを追加
                 }
                 //保存
                 score_sheet.push(addData);
-                
+
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
@@ -245,14 +254,19 @@ TODO:スコアシートを追加
                     if (score_n >= $("#max_score").val()) {
                         $('#control, #control, .score, .score').hide('slow');
                         setTimeout(function () {
-                            document.getElementById('scoreA').innerText = 0;
-                            document.getElementById('scoreB').innerText = 0;
-                            document.getElementById('difference').innerText = "点差:0";
+                            $("#scoreA").text("0")
+                            $("#scoreB").text("0")
+                            $("#difference").text("点差:0")
                             $("#game_set_" + result[0]).text(set_n + 1)
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
-                    
+                    if ($("#saab").prop("checked")) {
+                        $(".saab").remove();
+                        $("#score-box_" + result[0]).append("<p class='saab'>🏸</p>");
+
+                    }
+
                 } else if (result[1] == "minus") {
                     if (score > 0) {
                         document.getElementById(`score${result[0]}`).innerText = score - 1;
@@ -300,6 +314,13 @@ TODO:スコアシートを追加
             } else {
                 $('#game_set_A, #game_set_B').hide('slow');
 
+            }
+        })
+        $("#saab").change(function () {
+            if (this.checked) {
+
+            } else {
+                $(".saab").remove();
             }
         })
         $("#score_sheet_btn").on("click", function () {
