@@ -273,6 +273,8 @@ TODO:スコアシートを追加
                     }
                 }
             }
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
                 document.getElementById('difference').innerText = scoreA - scoreB
                 if ($("#color").prop('checked')) {
