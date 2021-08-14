@@ -242,6 +242,7 @@ TODO:スコアシートを追加
                         }
                     }
                     score_sheet.push(addData);
+                    set_saab(result[0]);
                     //最高得点を超えている場合
                     if (score_n >= $("#max_score").val()) {
                         $('#control, #control, .score, .score').hide('slow');
@@ -250,11 +251,11 @@ TODO:スコアシートを追加
                             $("#scoreB").text("0")
                             $("#difference").text("点差:0")
                             $("#game_set_" + result[0]).text(set_n + 1)
-                            set_color()
+                            set_color();
+                            set_saab();
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
-                    set_saab(result[0]);
 
                 } else if (result[1] == "minus") {
                     if (score > 0) {
@@ -297,14 +298,20 @@ TODO:スコアシートを追加
                 $("#difference").text("点差:0");
             }
         }
-        function set_saab(A_or_B) {
+        function set_saab(A_or_B = null) {
+            if (A_or_B === null) {
+                $(".saab").remove();
+                return
+            }
+
             if ($("#saab").prop("checked")) {
                 $(".saab").remove();
                 $("#score-box_" + A_or_B).append("<p class='saab'>🏸</p>");
             }
         }
-    </script>
-    <script>
+    
+
+    
         $("#reset").on("click", function () {
             $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
             $(".saab").remove();
