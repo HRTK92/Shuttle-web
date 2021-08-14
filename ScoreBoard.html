@@ -1,4 +1,4 @@
-<!-- 
+<!--
 TODO:スコアシートを追加
 -->
 <!DOCTYPE html>
@@ -10,7 +10,7 @@ TODO:スコアシートを追加
     <title>Badminton Scoreboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
         * {
             box-sizing: border-box;
@@ -134,7 +134,9 @@ TODO:スコアシートを追加
             <p class="score" id="scoreA" onclick="score('A_plus')">
                 0
             </p>
-            <p class="game_set_A" id="game_set_A">0</p>
+            <p class="game_set_A" id="game_set_A">
+                0
+            </p>
             <div class="control" id="control">
                 <a class="btn_ minusA" onclick="score('A_minus')">&minus;</a>
                 <a class="btn_ plusA" onclick="score('A_plus')">&plus;</a>
@@ -144,7 +146,9 @@ TODO:スコアシートを追加
             <p class="score" id="scoreB" onclick="score('B_plus')">
                 0
             </p>
-            <p class="game_set_B" id="game_set_B">0</p>
+            <p class="game_set_B" id="game_set_B">
+                0
+            </p>
             <div class="control" id="control">
                 <a class="btn_ minusB" onclick="score('B_minus')">&minus;</a>
                 <a class="btn_ plusB" onclick="score('B_plus')">&plus;</a>
@@ -258,13 +262,13 @@ TODO:スコアシートを追加
                             $("#scoreB").text("0")
                             $("#difference").text("点差:0")
                             $("#game_set_" + result[0]).text(set_n + 1)
+                            set_color()
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
                     if ($("#saab").prop("checked")) {
                         $(".saab").remove();
                         $("#score-box_" + result[0]).append("<p class='saab'>🏸</p>");
-
                     }
 
                 } else if (result[1] == "minus") {
@@ -273,6 +277,10 @@ TODO:スコアシートを追加
                     }
                 }
             }
+            set_color();
+            document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
+        }
+        function set_color() {
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
@@ -294,7 +302,6 @@ TODO:スコアシートを追加
                     $("#scoreB").css("color", "blue");
                 }
             }
-            document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
         }
     </script>
     <script>
@@ -303,7 +310,7 @@ TODO:スコアシートを追加
         });
         $("#color").change(function () {
             if (this.checked) {
-                score("color")
+                set_color()
             } else {
                 $("#scoreA").css("color", "#FFF");
                 $("#scoreB").css("color", "#FFF");
@@ -319,15 +326,11 @@ TODO:スコアシートを追加
             }
         })
         $("#saab").change(function () {
-            if (this.checked) {
-
-            } else {
+            if (this.checked) {} else {
                 $(".saab").remove();
             }
         })
-        $("#score_sheet_btn").on("click", function () {
-
-        });
+        $("#score_sheet_btn").on("click", function () {});
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
