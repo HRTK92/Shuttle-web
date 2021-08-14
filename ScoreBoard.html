@@ -10,7 +10,7 @@ TODO:スコアシートを追加
     <title>Badminton Scoreboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
         * {
             box-sizing: border-box;
@@ -155,8 +155,8 @@ TODO:スコアシートを追加
             </div>
         </div>
         <span class="difference" id="difference">点差:0</span>
-        <a class="reset" onclick="score('reset')">reset</a>
-        <a class="switch" onclick="score('switch')">change</a>
+        <a class="reset" id="reset">reset</a>
+        <a class="switch" id="switch">change</a>
         <a class="score_sheet_btn" id="score_sheet_btn" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop_score_sheet">sheet</a>
         <a class="setting" id="setting" data-bs-toggle="modal" data-bs-target="#staticBackdrop_setting">⚙設定</a>
@@ -221,18 +221,7 @@ TODO:スコアシートを追加
         function score(e) {
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
-            if (e == "switch") {
-                //スコア
-                $("#scoreA").text(scoreB);
-                $("#scoreB").text(scoreA);
-                //セット数
-                var gsA = $("#game_set_A").text()
-                var gsB = $("#game_set_B").text()
-                $("#game_set_A").text(gsB)
-                $("#game_set_B").text(gsA)
-            } else if (e == "reset") {
-                $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
-            } else if (e.indexOf('_') !== -1) {
+            if (e.indexOf('_') !== -1) {
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
                 var total_score = scoreA + scoreB
@@ -278,33 +267,58 @@ TODO:スコアシートを追加
                 }
             }
             set_color();
+            set_difference();
             document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
         }
         function set_color() {
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
-                document.getElementById('difference').innerText = scoreA - scoreB
                 if ($("#color").prop('checked')) {
                     $("#scoreA").css("color", "red");
                     $("#scoreB").css("color", "blue");
                 }
             } else if (scoreA < scoreB) {
-                document.getElementById('difference').innerText = scoreB - scoreA
                 if ($("#color").prop('checked')) {
                     $("#scoreB").css("color", "red");
                     $("#scoreA").css("color", "blue");
                 }
             } else if (scoreA === scoreB) {
-                document.getElementById('difference').innerText = 0
                 if ($("#color").prop('checked')) {
                     $("#scoreA").css("color", "blue");
                     $("#scoreB").css("color", "blue");
                 }
             }
         }
+        function set_difference() {
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
+            if (scoreA > scoreB) {
+                $("#difference").text(scoreA - scoreB);
+            } else if (scoreA < scoreB) {
+                $("#difference").text(scoreB - scoreA);
+
+            } else if (scoreA === scoreB) {
+                $("#difference").text(0);
+            }
+        }
     </script>
     <script>
+        $("#reset").on("click", function () {
+            $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
+        });
+        $("#switch").on("click", function () {
+            var scoreA = Number(document.getElementById('scoreA').textContent);
+            var scoreB = Number(document.getElementById('scoreB').textContent);
+            //スコア
+            $("#scoreA").text(scoreB);
+            $("#scoreB").text(scoreA);
+            //セット数
+            var gsA = $("#game_set_A").text()
+            var gsB = $("#game_set_B").text()
+            $("#game_set_A").text(gsB)
+            $("#game_set_B").text(gsA)
+        });
         $("input[type=range]").on("input", function () {
             $('#max_score_display').text($("#max_score").val());
         });
@@ -326,11 +340,11 @@ TODO:スコアシートを追加
             }
         })
         $("#saab").change(function () {
-            if (this.checked) {} else {
+            if (this.checked) { } else {
                 $(".saab").remove();
             }
         })
-        $("#score_sheet_btn").on("click", function () {});
+        $("#score_sheet_btn").on("click", function () { });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
