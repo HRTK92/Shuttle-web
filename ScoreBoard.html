@@ -154,7 +154,7 @@ TODO:スコアシートを追加
                 <a class="btn_ plusB" onclick="score('B_plus')">&plus;</a>
             </div>
         </div>
-        <span class="difference" id="difference">点差:0</span>
+        <span class="difference" id="difference">点差</span>
         <a class="reset" id="reset">reset</a>
         <a class="switch" id="switch">change</a>
         <a class="score_sheet_btn" id="score_sheet_btn" data-bs-toggle="modal"
@@ -178,7 +178,7 @@ TODO:スコアシートを追加
                             <label class="form-check-label" for="game_set">ゲームセット数を表示するか</label>
                         </div>
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="saab">
+                            <input class="form-check-input" type="checkbox" id="saab" checked>
                             <label class="form-check-label" for="saab">サーブを表示🏸</label>
                         </div>
                         <hr>
@@ -225,24 +225,23 @@ TODO:スコアシートを追加
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
                 var total_score = scoreA + scoreB
-                if (result[0] === "A") {
-                    var addData = {
-                        "scoreA": true,
-                        "scoreB": false
-                    }
-                } else if (result[0] === "B") {
-                    var addData = {
-                        "scoreA": false,
-                        "scoreB": true
-                    }
-                }
-                //保存
-                score_sheet.push(addData);
 
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
                     var set_n = Number(document.getElementById(`game_set_${result[0]}`).textContent);
+                    if (result[0] === "A") {
+                        var addData = {
+                            "scoreA": true,
+                            "scoreB": false
+                        }
+                    } else if (result[0] === "B") {
+                        var addData = {
+                            "scoreA": false,
+                            "scoreB": true
+                        }
+                    }
+                    score_sheet.push(addData);
                     //最高得点を超えている場合
                     if (score_n >= $("#max_score").val()) {
                         $('#control, #control, .score, .score').hide('slow');
@@ -255,10 +254,7 @@ TODO:スコアシートを追加
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
-                    if ($("#saab").prop("checked")) {
-                        $(".saab").remove();
-                        $("#score-box_" + result[0]).append("<p class='saab'>🏸</p>");
-                    }
+                    set_saab(result[0]);
 
                 } else if (result[1] == "minus") {
                     if (score > 0) {
@@ -268,7 +264,6 @@ TODO:スコアシートを追加
             }
             set_color();
             set_difference();
-            document.getElementById('difference').innerText = "点差:" + document.getElementById('difference').textContent
         }
         function set_color() {
             var scoreA = Number(document.getElementById('scoreA').textContent);
@@ -294,18 +289,26 @@ TODO:スコアシートを追加
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
-                $("#difference").text(scoreA - scoreB);
+                $("#difference").text(`点差:${scoreA - scoreB}`);
             } else if (scoreA < scoreB) {
-                $("#difference").text(scoreB - scoreA);
+                $("#difference").text(`点差:${scoreB - scoreA}`);
 
             } else if (scoreA === scoreB) {
-                $("#difference").text(0);
+                $("#difference").text("点差:0");
+            }
+        }
+        function set_saab(A_or_B) {
+            if ($("#saab").prop("checked")) {
+                $(".saab").remove();
+                $("#score-box_" + A_or_B).append("<p class='saab'>🏸</p>");
             }
         }
     </script>
     <script>
         $("#reset").on("click", function () {
             $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
+            $(".saab").remove();
+
         });
         $("#switch").on("click", function () {
             var scoreA = Number(document.getElementById('scoreA').textContent);
