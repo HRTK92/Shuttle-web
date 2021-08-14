@@ -209,8 +209,14 @@ TODO:スコアシートを追加
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
             if (e == "switch") {
-                $("#scoreA").text(scoreB)
+                //スコア
+                $("#scoreA").text(scoreB);
                 $("#scoreB").text(scoreA);
+                //セット数
+                var gsA = $("#game_set_A").text()
+                var gsB = $("#game_set_B").text()
+                $("#game_set_A").text(gsB)
+                $("#game_set_B").text(gsA)
             } else if (e == "reset") {
                 $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
             } else if (e.indexOf('_') !== -1) {
@@ -228,29 +234,31 @@ TODO:スコアシートを追加
                         "scoreB": true
                     }
                 }
-                score_sheet.push(addData)
+                //保存
+                score_sheet.push(addData);
+                
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
                     var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
-                    var set = Number(document.getElementById(`game_set_${result[0]}`).textContent);
+                    var set_n = Number(document.getElementById(`game_set_${result[0]}`).textContent);
+                    //最高得点を超えている場合
                     if (score_n >= $("#max_score").val()) {
                         $('#control, #control, .score, .score').hide('slow');
                         setTimeout(function () {
                             document.getElementById('scoreA').innerText = 0;
                             document.getElementById('scoreB').innerText = 0;
                             document.getElementById('difference').innerText = "点差:0";
-                            $("#game_set_" + result[0]).text(set + 1)
+                            $("#game_set_" + result[0]).text(set_n + 1)
                         }, 1000);
                         $('#control, #control, .score, .score').show('slow');
                     }
+                    
                 } else if (result[1] == "minus") {
                     if (score > 0) {
                         document.getElementById(`score${result[0]}`).innerText = score - 1;
                     }
                 }
             }
-            var scoreA = Number(document.getElementById('scoreA').textContent);
-            var scoreB = Number(document.getElementById('scoreB').textContent);
             if (scoreA > scoreB) {
                 document.getElementById('difference').innerText = scoreA - scoreB
                 if ($("#color").prop('checked')) {
