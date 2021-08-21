@@ -3,7 +3,20 @@
 <head>
 <meta charset="uft-8">
 <meta http-equiv="refresh" content="0;URL=ScoreBoard.html">
-<title></title>
+<link rel="manifest" href="./manifest.json">
+<title>Home</title>
 </head>
-<body></body>
+<body>
+
+    <script>
+    // service workerの登録関係
+    if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service_worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+        console.log('ServiceWorker registration failed: ', err);
+    });
+    }
+    </script>
+</body>
 </html>
