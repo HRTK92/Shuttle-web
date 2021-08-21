@@ -1,0 +1,8 @@
+{
+    "short_name": "PWA",
+    "name": "PWA バドミントンツール",
+    "display": "standalone",
+    "start_url": "/badminton-tool/",
+    "icons": [
+    ]
+}
