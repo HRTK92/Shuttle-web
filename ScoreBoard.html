@@ -312,9 +312,9 @@ TODO:PWA
                 $("#score-box_" + A_or_B).append("<p class='saab'>🏸</p>");
             }
         }
-    
 
-    
+
+
         $("#reset").on("click", function () {
             $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
             $(".saab").remove();
@@ -360,21 +360,25 @@ TODO:PWA
         $("#score_sheet_btn").on("click", function () { });
         $("#full_screen").on("click", function () {
             var ele = document.documentElement;
-            ele.requestFullscreen();
+            if (document.fullscreenElement) {
+                document.exitFullscreen()
+            } else {
+                ele.requestFullscreen();
+            }
         })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
     <script>
-    // service workerの登録関係
-    if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./service_worker.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-        console.log('ServiceWorker registration failed: ', err);
-    });
-}
+        // service workerの登録関係
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./service_worker.js').then(function (registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }).catch(function (err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }
     </script>
 </body>
 
