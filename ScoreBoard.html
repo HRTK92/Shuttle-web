@@ -124,6 +124,8 @@
             right: 10px;
         }
     </style>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
 </head>
 
 <body>
@@ -241,6 +243,7 @@
                         }
                     }
                     score_sheet.push(addData);
+                    ScoreSheet(score_sheet)
                     set_saab(result[0]);
                     //最高得点を超えている場合
                     if (score_n >= $("#max_score").val()) {
@@ -309,7 +312,9 @@
             }
         }
 
-
+        function ScoreSheet(data) {
+            data.forEach(element => console.log(element));
+        }
 
         $("#reset").on("click", function () {
             $("#scoreA, #scoreB, #game_set_A, #game_set_B").text(0)
