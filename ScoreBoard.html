@@ -124,6 +124,8 @@
             right: 10px;
         }
     </style>
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
 </head>
 
 <body>
@@ -177,6 +179,10 @@
                             <label class="form-check-label" for="game_set">ゲームセット数を表示するか</label>
                         </div>
                         <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="deuce">
+                            <label class="form-check-label" for="deuce">デュースを有効にするか</label>
+                        </div>
+                        <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="saab" checked>
                             <label class="form-check-label" for="saab">サーブを表示🏸</label>
                         </div>
@@ -213,6 +219,7 @@
         </div>
     </div>
     <script>
+        var deuce = false
         var score_sheet = [{
             "scoreA": false,
             "scoreB": false
@@ -220,6 +227,7 @@
         function score(e) {
             var scoreA = Number(document.getElementById('scoreA').textContent);
             var scoreB = Number(document.getElementById('scoreB').textContent);
+
             if (e.indexOf('_') !== -1) {
                 result = e.split('_');
                 var score = Number(document.getElementById(`score${result[0]}`).textContent);
@@ -227,33 +235,49 @@
 
                 if (result[1] == "plus") {
                     document.getElementById(`score${result[0]}`).innerText = score + 1;
-                    var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
-                    var set_n = Number(document.getElementById(`game_set_${result[0]}`).textContent);
                     if (result[0] === "A") {
+                        scoreA++
                         var addData = {
                             "scoreA": true,
                             "scoreB": false
                         }
                     } else if (result[0] === "B") {
+                        scoreB++
                         var addData = {
                             "scoreA": false,
                             "scoreB": true
                         }
                     }
+                    var score_n = Number(document.getElementById(`score${result[0]}`).textContent);
+                    var set_n = Number(document.getElementById(`game_set_${result[0]}`).textContent);
+
                     score_sheet.push(addData);
                     set_saab(result[0]);
-                    //最高得点を超えている場合
-                    if (score_n >= $("#max_score").val()) {
-                        $('#control, #control, .score, .score').hide('slow');
-                        setTimeout(function () {
+
+                    if (scoreA == $("#max_score").val() - 1 && scoreB == $("#max_score").val() - 1 && $("#deuce").prop('checked')) {
+                        deuce = true
+                    }
+                    if (deuce) {
+                        if (scoreA - scoreB == 2 || scoreA - scoreB == -2) {
+                            $('#control, #control, .score, .score').hide()
                             $("#scoreA").text("0")
                             $("#scoreB").text("0")
                             $("#difference").text("点差:0")
                             $("#game_set_" + result[0]).text(set_n + 1)
                             set_color();
                             set_saab();
-                        }, 1000);
-                        $('#control, #control, .score, .score').show('slow');
+                            $('#control, #control, .score, .score').show('slow')
+                            deuce = false
+                        }
+                    } else if (score_n >= $("#max_score").val()) {
+                        $('#control, #control, .score, .score').hide()
+                        $("#scoreA").text("0")
+                        $("#scoreB").text("0")
+                        $("#difference").text("点差:0")
+                        $("#game_set_" + result[0]).text(set_n + 1)
+                        set_color();
+                        set_saab();
+                        $('#control, #control, .score, .score').show('slow')
                     }
 
                 } else if (result[1] == "minus") {
