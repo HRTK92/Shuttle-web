@@ -1,0 +1,113 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #005500;
+            font-family: arial, sans-serif;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .score-box {
+            color: #fff;
+            float: left;
+            width: 50%;
+            height: 100vh;
+            line-height: 2;
+            position: relative;
+            letter-spacing: -20px;
+        }
+
+        .score {
+            font-size: 1000%;
+            height: 50%;
+            text-align: center;
+        }
+
+        .game_set_A {
+            font-size: 120%;
+            text-align: center;
+
+        }
+
+        .game_set_B {
+            font-size: 120%;
+            text-align: center;
+        }
+
+        .saab {
+            height: 75%;
+            text-align: center;
+        }
+
+        .score-box:first-child {
+            border-right: 2px solid yellow;
+            background: #006600;
+        }
+
+        .active {
+            color: yellow;
+        }
+
+        .control {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+        }
+
+        .btn_ {
+            color: #ccc;
+            font-size: 40px;
+            display: block;
+            float: left;
+            width: 50%;
+            height: 100px;
+            text-align: center;
+            text-decoration: none;
+            line-height: 2.5;
+            opacity: .7;
+        }
+
+        .reset,
+        .switch,
+        .setting,
+        .difference,
+        .score_sheet_btn {
+            background: #004400;
+            border-radius: 4px;
+            color: #fff;
+            display: block;
+            font-weight: 100;
+            width: 60px;
+            height: 40px;
+            line-height: 2.5;
+            text-align: center;
+            position: absolute;
+            top: 15px;
+            text-decoration: none;
+        }
+
+        .reset {
+            left: 10px;
+        }
+
+        .switch {
+            left: 80px;
+        }
+
+        .difference {
+            left: 45%;
+        }
+
+        .score_sheet_btn {
+            right: 80px;
+        }
+
+        .setting {
+            right: 10px;
+        }
