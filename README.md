@@ -1,4 +1,4 @@
-# badminton-tool
+# シャトル WEB
 
 ![image](./img/image.png)
 
