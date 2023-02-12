@@ -1,5 +1,7 @@
 name: LightHouse
+
 on: [push]
+
 jobs:
   lighthouseci:
     runs-on: ubuntu-latest
@@ -8,8 +10,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm install && npm install -g @lhci/cli@0.8.x
+      - run: yarn add @lhci/cli@0.8.x
       - name: run Lighthouse CI
-        run: lhci autorun --collect.staticDistDir=./ --upload.target=temporary-public-storage
+        run: yarn lhci autorun --collect.staticDistDir=./ --upload.target=temporary-public-storage
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
